@@ -30,7 +30,7 @@ class ProductCreateView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save()
-        cache.delete(CACHE_KEY)  # Cache Invalidation
+        cache.delete(CACHE_KEY)  # Cache Invalidation after a new creation
 
 
 class ProductUpdateView(generics.UpdateAPIView):
@@ -40,7 +40,7 @@ class ProductUpdateView(generics.UpdateAPIView):
 
     def perform_update(self, serializer):
         serializer.save()
-        cache.delete(CACHE_KEY)  # Cache Invalidation
+        cache.delete(CACHE_KEY)  # Cache Invalidation after an update
 
 
 class ProductDeleteView(generics.DestroyAPIView):
@@ -50,4 +50,4 @@ class ProductDeleteView(generics.DestroyAPIView):
 
     def perform_destroy(self, instance):
         instance.delete()
-        cache.delete(CACHE_KEY)  # Cache Invalidation
+        cache.delete(CACHE_KEY)  # Cache Invalidation after a deletion
